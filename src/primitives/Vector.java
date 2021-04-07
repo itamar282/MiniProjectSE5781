@@ -56,7 +56,7 @@ public class Vector {
      * @param vec
      * @return A new vector with the values of the subtraction of the 2 vectors
      */
-    public Vector Subtract(Vector vec) {
+    public Vector subtract(Vector vec) {
         return _head.subtract(vec._head);
     }
 
