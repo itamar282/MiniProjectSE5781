@@ -108,7 +108,12 @@ public class Vector {
         double v2 = vec._head._y.coord;
         double u3 = _head._z.coord;
         double v3 = vec._head._z.coord;
-        return new Vector(u2 * v3 - u3 * v2, u3 * v1 - u1 * v3, u1 * v2 - u2 * v1);
+
+        Point3D newNormal = new Point3D(u2 * v3 - u3 * v2, u3 * v1 - u1 * v3, u1 * v2 - u2 * v1);
+        if (newNormal == Point3D.ZERO){
+            throw new IllegalArgumentException("The result of the normal is 0,0,0 but that's illegal");
+        }
+        return new Vector(newNormal);
     }
 
     /**

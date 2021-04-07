@@ -7,8 +7,8 @@ import primitives.Vector;
  * A class represents a Sphere shape with a 3D point (the center of the Sphere) and a radius
  */
 public class Sphere implements Geometry{
-    Point3D _center;
-    double _radius;
+    final Point3D _center;
+    final double _radius;
 
     /**
      *
@@ -27,7 +27,9 @@ public class Sphere implements Geometry{
      */
     @Override
     public Vector getNormal(Point3D point) {
-        return null;
+        Vector v = point.subtract(_center);
+        v.normalize();
+        return v;
     }
 
     /**

@@ -7,8 +7,8 @@ import primitives.Vector;
  * A class represents a plane shape with a 3D point and a normal
  */
 public class Plane implements Geometry{
-    Point3D _q0;
-    Vector _normal;
+    final Point3D _q0;
+    final Vector _normal;
 
     /**
      *
@@ -17,7 +17,7 @@ public class Plane implements Geometry{
      */
     public Plane(Point3D point, Vector normal) {
         _q0 = point;
-        this._normal = normal;
+        _normal = normal;
     }
 
     /**
@@ -28,7 +28,11 @@ public class Plane implements Geometry{
      */
     public Plane(Point3D p1, Point3D p2, Point3D p3) {
         _q0 = p1;
-        this._normal = null;
+        Vector v1 = p2.subtract(p1);
+        Vector v2 = p3.subtract(p1);
+        Vector v3 = v1.crossProduct(v2);
+        v3.normalize();
+        _normal = v3;
     }
 
     /**

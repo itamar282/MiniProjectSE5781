@@ -6,8 +6,8 @@ import java.util.Objects;
  * A class representing a collection of 3D points from 1 point to infinite (with a vector)
  */
 public class Ray {
-    Point3D _p0;
-    Vector _dir;
+    final Point3D _p0;
+    final Vector _dir;
 
     /**
      *
@@ -17,6 +17,14 @@ public class Ray {
     public Ray(Point3D point, Vector vec){
         _p0 = point;
         _dir = vec.normalized();
+    }
+
+    public Point3D getP0() {
+        return _p0;
+    }
+
+    public Vector getDir() {
+        return _dir;
     }
 
     /**
