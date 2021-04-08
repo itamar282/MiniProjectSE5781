@@ -8,7 +8,6 @@ import primitives.Vector;
  *  A class represents a Cylinder mesh with a height a Ray and a radius (extends the Tube class)
  */
 public class Cylinder extends Tube{
-    int wow;
     final double _height;
 
     /**
