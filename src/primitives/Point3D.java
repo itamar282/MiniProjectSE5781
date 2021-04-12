@@ -1,6 +1,5 @@
 package primitives;
 
-import java.awt.*;
 import java.util.Objects;
 
 /**
@@ -79,6 +78,18 @@ public class Point3D {
      */
     public double distance(Point3D point) {
         return Math.sqrt(distanceSquared(point));
+    }
+
+    public double getX() {
+        return _x.coord;
+    }
+
+    public double getY() {
+        return _y.coord;
+    }
+
+    public double getZ() {
+        return _z.coord;
     }
 
     /**

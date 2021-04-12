@@ -4,12 +4,13 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
+import java.util.List;
+
 /**
  * A class represents a Tube shape
  */
-public class Tube implements Geometry{
+public class Tube extends RadialGeometry implements Geometry{
     final protected Ray _axisRay;
-    final protected double _radius;
 
     /**
      *
@@ -17,8 +18,8 @@ public class Tube implements Geometry{
      * @param radius Represents the radius of the tube
      */
     public Tube(Ray axisRay, double radius) {
+        super(radius);
         _axisRay = axisRay;
-        _radius = radius;
     }
 
     @Override
@@ -41,11 +42,9 @@ public class Tube implements Geometry{
         return _axisRay;
     }
 
-    /**
-     *
-     * @return The radius of the tube
-     */
-    public double getRadius() {
-        return _radius;
+
+    @Override
+    public List<Point3D> findIntersections(Ray ray) {
+        return null;
     }
 }

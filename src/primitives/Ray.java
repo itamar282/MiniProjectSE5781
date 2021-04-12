@@ -48,4 +48,9 @@ public class Ray {
     public int hashCode() {
         return Objects.hash(_p0, _dir);
     }
+
+    public Point3D getTargetPoint(double t) {
+        Point3D result = _p0.add(_dir.scale(t));
+        return result;
+    }
 }
