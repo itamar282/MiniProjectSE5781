@@ -7,7 +7,7 @@ import primitives.Vector;
 import static primitives.Util.isZero;
 
 /**
- * A class representing a camera
+ * A class representing a camera.
  */
 public class Camera {
     final Point3D _p0;
