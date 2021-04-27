@@ -7,9 +7,9 @@ import java.util.Objects;
  */
 
 public class Point3D {
-    Coordinate _x;
-    Coordinate _y;
-    Coordinate _z;
+    final Coordinate _x;
+    final Coordinate _y;
+    final Coordinate _z;
 
     static public Point3D ZERO = new Point3D(0, 0, 0);
 

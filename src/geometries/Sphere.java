@@ -42,6 +42,7 @@ public class Sphere extends RadialGeometry implements Geometry {
         return _center;
     }
 
+
     @Override
     public List<Point3D> findIntersections(Ray ray) {
         if (ray.getP0() == _center) {

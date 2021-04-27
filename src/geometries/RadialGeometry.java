@@ -1,5 +1,8 @@
 package geometries;
 
+/**
+ * A class representing a geometry with a radius
+ */
 public class RadialGeometry {
     final protected double _radius;
 

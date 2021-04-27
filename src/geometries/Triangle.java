@@ -10,6 +10,10 @@ import java.util.List;
  * A class represents a Triangle
  */
 public class Triangle extends Polygon {
+    /**
+     *
+     * @param vertices Representing a list of 3D points that the polygon is created from
+     */
     public Triangle(Point3D... vertices) {
         super(vertices);
     }

@@ -44,7 +44,7 @@ public class Vector {
 
     /**
      *
-     * @param vec
+     * @param vec The other vector
      * @return A new vector with the values of the addition of the 2 vectors
      */
     public Vector add(Vector vec) {
@@ -53,7 +53,7 @@ public class Vector {
 
     /**
      *
-     * @param vec
+     * @param vec The subtracted vector
      * @return A new vector with the values of the subtraction of the 2 vectors
      */
     public Vector subtract(Vector vec) {
@@ -62,7 +62,7 @@ public class Vector {
 
     /**
      *
-     * @param scalar
+     * @param scalar The number that the coordinates of the vector are multiplied at
      * @return A vector with values of the multiplication of each coordinate * scalar
      */
     public Vector scale(double scalar) {
@@ -71,31 +71,23 @@ public class Vector {
 
     /**
      *
-     * @param vec
+     * @param vec The other vector of the dot product
      * @return  A scalar multiplication
      */
     public double dotProduct(Vector vec) {
-        if (this.normalized() == vec.normalized()) {
-            //Same direction...
-        }
-        double x1 = _head._x.coord;
-        double x2 = vec._head._x.coord;
-        double y1 = _head._y.coord;
-        double y2 = vec._head._y.coord;
-        double z1 = _head._z.coord;
-        double z2 = vec._head._z.coord;
+        double u1 = _head._x.coord;
+        double v1 = vec._head._x.coord;
+        double u2 = _head._y.coord;
+        double v2 = vec._head._y.coord;
+        double u3 = _head._z.coord;
+        double v3 = vec._head._z.coord;
 
-        double CosAlpha = ((x1 * x2) + (y1 * y2) + (z1 * z2)) / (this.length() * vec.length());
-        if (CosAlpha == 0) {
-            return 0;
-        }
-
-        return (x1 * x2) + (y1 * y2) + (z1 * z2);
+        return (u1 * v1) + (u2 * v2) + (u3 * v3);
     }
 
     /**
      *
-     * @param vec
+     * @param vec The other vector of the cross product
      * @return The cross product of the 2 vectors
      */
     public Vector crossProduct(Vector vec) {
@@ -110,9 +102,7 @@ public class Vector {
         double v3 = vec._head._z.coord;
 
         Point3D newNormal = new Point3D(u2 * v3 - u3 * v2, u3 * v1 - u1 * v3, u1 * v2 - u2 * v1);
-        if (newNormal == Point3D.ZERO){
-            throw new IllegalArgumentException("The result of the normal is 0,0,0 but that's illegal");
-        }
+
         return new Vector(newNormal);
     }
 

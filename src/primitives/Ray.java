@@ -1,5 +1,6 @@
 package primitives;
 
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -11,7 +12,7 @@ public class Ray {
 
     /**
      *
-     * @param point Represents the edge of the ray
+     * @param point Represents the start of the ray
      * @param vec Represents the direction of the ray
      */
     public Ray(Point3D point, Vector vec){
@@ -49,8 +50,34 @@ public class Ray {
         return Objects.hash(_p0, _dir);
     }
 
+    /**
+     *
+     * @param t The distance of the wanted point from p0
+     * @return A 3D point (point = p0 + v*t)
+     */
     public Point3D getTargetPoint(double t) {
         Point3D result = _p0.add(_dir.scale(t));
+        return result;
+    }
+
+    /**
+     *
+     * @param points A list of 3D points
+     * @return The closest point of the list to the start of the ray
+     */
+    public Point3D findClosestPoint(List<Point3D> points){
+        Point3D result = null;
+        if (points == null){
+            return null;
+        }
+        double closestDistance = Double.MAX_VALUE;
+        for (Point3D point: points) {
+            double distance = point.distance(_p0);
+            if (distance < closestDistance){
+                result = point;
+                closestDistance = distance;
+            }
+        }
         return result;
     }
 }

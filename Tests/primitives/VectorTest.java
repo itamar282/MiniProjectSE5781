@@ -29,19 +29,19 @@ class VectorTest {
     @Test
     void add() {
         /////////// Testing the adding function//////////////
-        assertEquals(v1, v2.add(new Vector(3, 6, 9)), "ERROR: adding function not working well" );
+        assertEquals(v1, v2.add(new Vector(3, 6, 9)), "ERROR: adding function not working well");
     }
 
     @Test
     void subtract() {
         /////////// Testing the subtracting function//////////////
-        assertEquals(v1.subtract(new Vector(3, 6, 9)), v2, "ERROR: subtracting function not working well" );
+        assertEquals(v1.subtract(new Vector(3, 6, 9)), v2, "ERROR: subtracting function not working well");
     }
 
     @Test
     void scale() {
         /////////// Testing the scale function//////////////
-            assertEquals(v1.scale(10), v2.scale(-5), "ERROR: scale function not working well" );
+        assertEquals(v1.scale(10), v2.scale(-5), "ERROR: scale function not working well");
     }
 
     @Test
@@ -56,20 +56,20 @@ class VectorTest {
     @Test
     public void testCrossProduct() {
         // ============ Equivalence Partitions Tests ==============
-        Vector vr = v1.crossProduct(v2);
+        Vector vr = v1.crossProduct(v3);
 
         // TC01: Test that length of cross-product is proper (orthogonal vectors taken
         // for simplicity)
-        assertEquals(v1.length() * v2.length(), vr.length(), 0.00001, "crossProduct() wrong result length");
+        assertEquals(v1.length() * v3.length(), vr.length(), 0.00001, "crossProduct() wrong result length");
 
         // TC02: Test cross-product result orthogonality to its operands
         assertTrue(isZero(vr.dotProduct(v1)), "crossProduct() result is not orthogonal to 1st operand");
-        assertTrue(isZero(vr.dotProduct(v2)), "crossProduct() result is not orthogonal to 2nd operand");
+        assertTrue(isZero(vr.dotProduct(v3)), "crossProduct() result is not orthogonal to 2nd operand");
 
         // =============== Boundary Values Tests ==================
-        // TC11: test zero vector from cross-productof co-lined vectors
+        // TC11: test zero vector from cross-product of co-lined vectors
         assertThrows(
-                IllegalArgumentException.class, () -> v1.crossProduct(v3), "crossProduct() for parallel vectors does not throw an exception");
+                IllegalArgumentException.class, () -> v1.crossProduct(v2), "crossProduct() for parallel vectors does not throw an exception");
         // try {
         //     v1.crossProduct(v2);
         //     fail("crossProduct() for parallel vectors does not throw an exception");
@@ -107,7 +107,7 @@ class VectorTest {
     void normalized() {
         /////////// Testing whether the normalized function return the same object or a new object//////////////
         Vector u = v1.normalized();
-        assertNotEquals(u, v1,"ERROR: normalize() result is not a unit vector");
+        assertNotEquals(u, v1, "ERROR: normalize() result is not a unit vector");
     }
 
 }
