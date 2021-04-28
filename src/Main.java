@@ -1,5 +1,5 @@
 import primitives.*;
-"336390885 "
+"336390885"
 import static java.lang.System.out;
 import static primitives.Util.*;
 
