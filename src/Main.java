@@ -1,5 +1,8 @@
+/**
+ *  Maxim Putikhanov - 336390885   and   Itamar Itzhak - 322972654
+ */
+
 import primitives.*;
-"336390885"
 import static java.lang.System.out;
 import static primitives.Util.*;
 

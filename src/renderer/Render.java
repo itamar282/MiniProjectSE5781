@@ -7,32 +7,58 @@ import scene.Scene;
 
 import java.util.MissingResourceException;
 
+/**
+ *  A class to render the scene
+ */
 public class Render {
     ImageWriter _imageWriter;
     Scene _scene;
     Camera _camera;
     RayTracerBase _rayTracerBase;
 
+    /**
+     *
+     * @param imageWriter A specific imageWriter
+     * @return This render object for multiple Implementation
+     */
     public Render setImageWriter(ImageWriter imageWriter) {
         _imageWriter = imageWriter;
         return this;
     }
 
+    /**
+     *
+     * @param scene A specific scene
+     * @return This render object for multiple Implementation
+     */
     public Render setScene(Scene scene) {
         _scene = scene;
         return this;
     }
 
+    /**
+     *
+     * @param camera A specific camera
+     * @return This render object for multiple Implementation
+     */
     public Render setCamera(Camera camera) {
         _camera = camera;
         return this;
     }
 
+    /**
+     *
+     * @param rayTracerBase A specific rayTracerBase
+     * @return This render object for multiple Implementation
+     */
     public Render setRayTracerBase(RayTracerBase rayTracerBase) {
         _rayTracerBase = rayTracerBase;
         return this;
     }
 
+    /**
+     * A function to render the image, with validation checking
+     */
     public void renderImage() {
         try {
             if (_imageWriter == null) {
@@ -52,8 +78,11 @@ public class Render {
             int nY = _imageWriter.getNy();
             for (int i = 0; i < nY; i++) {
                 for (int j = 0; j < nX; j++) {
+                    // For each pixel - build a ray
                     Ray ray = _camera.constructRayThroughPixel(nX, nY, j, i);
+                    // For each ray - find the color of the closest intersected point of the ray and the objects
                     Color pixelColor = _rayTracerBase.traceRay(ray);
+                    // Write this pixel with the found color
                     _imageWriter.writePixel(j, i, pixelColor);
                 }
             }
