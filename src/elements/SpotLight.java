@@ -25,7 +25,7 @@ public class SpotLight extends PointLight{
         if (max < 0){
             max = 0;
         }
-        Color iL = getIntensity(p).scale(max);
+        Color iL = super.getIntensity(p).scale(max);
         return iL;
     }
 }
