@@ -4,14 +4,14 @@ import primitives.Point3D;
 import primitives.Ray;
 import primitives.Vector;
 
-import java.util.*;
+import java.util.List;
 
 import static primitives.Util.isZero;
 
 /**
  * A class represents a plane shape with a 3D point and a normal
  */
-public class Plane implements Geometry{
+public class Plane extends Geometry{
     final Point3D _q0;
     final Vector _normal;
 
@@ -44,13 +44,14 @@ public class Plane implements Geometry{
      *
      * @return The normal of the plane
      */
+
     public Vector getNormal() {
         return _normal;
     }
 
     @Override
     public Vector getNormal(Point3D point) {
-        return null;
+        return getNormal();
     }
 
     /**
@@ -62,7 +63,7 @@ public class Plane implements Geometry{
     }
 
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
         Point3D p0 = ray.getP0();
         Vector v = ray.getDir();
 
@@ -78,6 +79,6 @@ public class Plane implements Geometry{
         Point3D p = ray.getTargetPoint(t);
         if(!p.subtract(p0).normalized().equals(v)) // If the ray starts after the plane...
             return null;
-        return List.of(p);
+        return List.of(new GeoPoint(this, p));
     }
 }

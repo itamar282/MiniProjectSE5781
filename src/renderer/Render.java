@@ -14,7 +14,7 @@ public class Render {
     ImageWriter _imageWriter;
     Scene _scene;
     Camera _camera;
-    RayTracerBase _rayTracerBase;
+    BasicRayTracer _basicRayTracer;
 
     /**
      *
@@ -48,11 +48,11 @@ public class Render {
 
     /**
      *
-     * @param rayTracerBase A specific rayTracerBase
+     * @param basicRayTracer A specific rayTracerBase
      * @return This render object for multiple Implementation
      */
-    public Render setRayTracerBase(RayTracerBase rayTracerBase) {
-        _rayTracerBase = rayTracerBase;
+    public Render setRayTracer(BasicRayTracer basicRayTracer) {
+        _basicRayTracer = basicRayTracer;
         return this;
     }
 
@@ -70,8 +70,8 @@ public class Render {
             if (_camera == null) {
                 throw new MissingResourceException("missing resource", _camera.getClass().getName(), "");
             }
-            if (_rayTracerBase == null) {
-                throw new MissingResourceException("missing resource", _rayTracerBase.getClass().getName(), "");
+            if (_basicRayTracer == null) {
+                throw new MissingResourceException("missing resource", _basicRayTracer.getClass().getName(), "");
             }
             //rendering the image
             int nX = _imageWriter.getNx();
@@ -81,8 +81,16 @@ public class Render {
                     // For each pixel - build a ray
                     Ray ray = _camera.constructRayThroughPixel(nX, nY, j, i);
                     // For each ray - find the color of the closest intersected point of the ray and the objects
-                    Color pixelColor = _rayTracerBase.traceRay(ray);
+                    if (j == 148 && i == 148){
+                        i += 1;
+                        i -= 1;
+                    }
+                    Color pixelColor = _basicRayTracer.traceRay(ray);
                     // Write this pixel with the found color
+                    if (j == 90 && i == 90){
+                        i += 1;
+                        i -= 1;
+                    }
                     _imageWriter.writePixel(j, i, pixelColor);
                 }
             }
@@ -101,7 +109,7 @@ public class Render {
         for (int i = 0; i < nY; i++) {
             for (int j = 0; j < nX; j++) {
                 if (i % interval == 0 || j % interval == 0) {
-                    _imageWriter.writePixel(j, i, Color.BLACK);
+                    _imageWriter.writePixel(j, i, color);
                 }
             }
         }

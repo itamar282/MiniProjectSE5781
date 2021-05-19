@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * A class represents a Tube shape
  */
-public class Tube extends RadialGeometry implements Geometry{
+public class Tube extends RadialGeometry{
     final protected Ray _axisRay;
 
     /**
@@ -42,9 +42,8 @@ public class Tube extends RadialGeometry implements Geometry{
         return _axisRay;
     }
 
-
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
         return null;
     }
 }

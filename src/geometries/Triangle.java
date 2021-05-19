@@ -18,7 +18,8 @@ public class Triangle extends Polygon {
         super(vertices);
     }
 
-    public List<Point3D> findIntersections(Ray ray) {
+    @Override
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
         Point3D p1 = vertices.get(0);
         Point3D p2 = vertices.get(1);
         Point3D p3 = vertices.get(2);
@@ -43,6 +44,6 @@ public class Triangle extends Polygon {
         if (sign1 != sign2 || sign1 != sign3 || sign2 != sign3)
             return null;
 
-        return plane.findIntersections(ray);
+        return plane.setEmission(this.getEmission()).setMaterial(getMaterial()).findGeoIntersections(ray);
     }
 }

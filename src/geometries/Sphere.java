@@ -12,8 +12,9 @@ import static primitives.Util.isZero;
 /**
  * A class represents a Sphere shape with a 3D point (the center of the Sphere) and a radius
  */
-public class Sphere extends RadialGeometry implements Geometry {
+public class Sphere extends RadialGeometry {
     final Point3D _center;
+
 
     /**
      * @param center Represents the center of the Sphere
@@ -44,9 +45,9 @@ public class Sphere extends RadialGeometry implements Geometry {
 
 
     @Override
-    public List<Point3D> findIntersections(Ray ray) {
+    public List<GeoPoint> findGeoIntersections(Ray ray) {
         if (ray.getP0() == _center) {
-            return List.of(ray.getTargetPoint(_radius));
+            return List.of(new GeoPoint(this, ray.getTargetPoint(_radius)));
         }
         Point3D p0 = ray.getP0();
         Vector v = ray.getDir();
@@ -66,13 +67,14 @@ public class Sphere extends RadialGeometry implements Geometry {
             t2 = -1; // remove 1 point
 
         if (t1 > 0 && t2 > 0) // return 2 points:
-            return List.of(ray.getTargetPoint(t1), ray.getTargetPoint(t2));
+            return List.of(new GeoPoint(this, ray.getTargetPoint(t1))
+                    , new GeoPoint(this, ray.getTargetPoint(t2)));
 
         if (t1 > 0) // return 1 points - if t1 > 0 but t2 < 0:
-            return List.of(ray.getTargetPoint(t1));
+            return List.of(new GeoPoint(this, ray.getTargetPoint(t1)));
 
         if (t2 > 0) // return 1 points - if t2 > 0 but t1 < 0
-            return List.of(ray.getTargetPoint(t2));
+            return List.of(new GeoPoint(this, ray.getTargetPoint(t2)));
 
         return null;
     }

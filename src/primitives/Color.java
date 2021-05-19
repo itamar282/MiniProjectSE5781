@@ -46,6 +46,7 @@ public class Color {
         this.r = r;
         this.g = g;
         this.b = b;
+        CheckRGB();
     }
 
     /**
@@ -57,6 +58,7 @@ public class Color {
         r = other.r;
         g = other.g;
         b = other.b;
+        CheckRGB();
     }
 
     /**
@@ -68,6 +70,21 @@ public class Color {
         r = other.getRed();
         g = other.getGreen();
         b = other.getBlue();
+        CheckRGB();
+    }
+
+    private void CheckRGB(){
+        /*
+        if (r > 255){
+            r=255;
+        }
+        if (g > 255){
+            g=255;
+        }
+        if (b > 255){
+            b=255;
+        }
+        */
     }
 
     /**
@@ -97,6 +114,7 @@ public class Color {
         this.r = r;
         this.g = g;
         this.b = b;
+        CheckRGB();
         return this;
     }
 
@@ -110,6 +128,7 @@ public class Color {
         r = other.r;
         g = other.g;
         b = other.b;
+        CheckRGB();
         return this;
     }
 
@@ -123,6 +142,7 @@ public class Color {
         r = other.getRed();
         g = other.getGreen();
         b = other.getBlue();
+        CheckRGB();
         return this;
     }
 
@@ -154,7 +174,9 @@ public class Color {
             rg += c.g;
             rb += c.b;
         }
-        return new Color(rr, rg, rb);
+        Color other = new Color(rr, rg, rb);
+        other.CheckRGB();
+        return other;
     }
 
     /**
@@ -166,7 +188,9 @@ public class Color {
     public Color scale(double k) {
         if (k < 0)
             throw new IllegalArgumentException("Can't scale a color by a negative number");
-        return new Color(r * k, g * k, b * k);
+        Color other = new Color(r*k, g*k, b*k);
+        other.CheckRGB();
+        return other;
     }
 
     /**

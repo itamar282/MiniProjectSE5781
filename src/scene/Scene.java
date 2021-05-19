@@ -1,8 +1,12 @@
 package scene;
 
 import elements.AmbientLight;
+import elements.LightSource;
 import geometries.Geometries;
 import primitives.Color;
+
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * Representing a scene with a background color, ambient light and geometries
@@ -10,8 +14,9 @@ import primitives.Color;
 public class Scene {
     private final String _name;
     public Color background = Color.BLACK;
-    public AmbientLight ambientLight = new AmbientLight(Color.LIGHT_GRAY, 1d);
+    public AmbientLight ambientLight = new AmbientLight(Color.BLACK, 1);
     public Geometries geometries = null;
+    public List<LightSource> _lights = new LinkedList<LightSource>();
 
     /**
      * @param name The name of the scene
@@ -45,6 +50,16 @@ public class Scene {
      */
     public Scene setGeometries(Geometries geometries) {
         this.geometries = geometries;
+        return this;
+    }
+
+    /**
+     *
+     * @param lights A multiple (or just one) light objects
+     * @return The same scene but with the new lights
+     */
+    public Scene setLights(List<LightSource> lights) {
+        _lights = lights;
         return this;
     }
 }
