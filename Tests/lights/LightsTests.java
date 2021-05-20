@@ -75,7 +75,8 @@ public class LightsTests {
     @Test
     public void sphereSpot() {
         scene1.geometries.add(sphere);
-        scene1._lights.add(new SpotLight(new Color(500, 300, 0), new Point3D(-50, -50, 50), new Vector(1, 1, -2)) //
+        scene1._lights.add(new SpotLight(
+                new Color(500, 300, 0), new Point3D(-50, -50, 50), new Vector(1, 1, -2)) //
                 .setkL(0.00001).setkQ(0.00000001));
 
         ImageWriter imageWriter = new ImageWriter("lightSphereSpot", 500, 500);

@@ -81,7 +81,7 @@ public class Render {
                     // For each pixel - build a ray
                     Ray ray = _camera.constructRayThroughPixel(nX, nY, j, i);
                     // For each ray - find the color of the closest intersected point of the ray and the objects
-                    if (j == 148 && i == 148){
+                    if (j == 212 && i == 146){
                         i += 1;
                         i -= 1;
                     }
